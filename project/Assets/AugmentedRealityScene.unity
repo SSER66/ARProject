@@ -209,6 +209,7 @@ GameObject:
   - component: {fileID: 138527239}
   - component: {fileID: 138527238}
   - component: {fileID: 138527240}
+  - component: {fileID: 138527241}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -235,8 +236,8 @@ MonoBehaviour:
   emotionScoreText: {fileID: 1056081642}
   hintText: {fileID: 941963791}
   userInputField: {fileID: 1248320492}
-  relativeConfig: {fileID: 0}
-  chatClient: {fileID: 0}
+  relativeConfig: {fileID: 11400000, guid: d722392a1a2d15242a293ccd474552f5, type: 2}
+  chatClient: {fileID: 138527241}
 --- !u!4 &138527239
 Transform:
   m_ObjectHideFlags: 0
@@ -265,6 +266,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   familyChatManager: {fileID: 138527238}
+--- !u!114 &138527241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 138527237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4ace275a2bb0234d85ae97541c1cb3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  apiKey: sk-23f20be4f2a74ec7a83f4c55e0266db2
+  apiUrl: https://api.deepseek.cn/v1/chat
+  model: deepseek-chat
+  ignoreSslErrors: 1
+  temperature: 1.2
+  topP: 0.9
+  frequencyPenalty: 0.35
+  presencePenalty: 0.15
+  maxTokens: 160
+  messageHistory: []
 --- !u!1 &291512516
 GameObject:
   m_ObjectHideFlags: 0
@@ -1113,7 +1136,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1733605517}
   m_HandleRect: {fileID: 1733605516}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -2511,7 +2534,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000081858176}
+  m_AnchoredPosition: {x: 0, y: -0.00012933718}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1248320491
