@@ -52,35 +52,35 @@ public class ResponseMessage
 
 public class DeepSeekChatClient : MonoBehaviour
 {
-    [Header("DeepSeek API ÅäÖÃ")]
-    [Tooltip("Èç¹ûĞèÒª Bearer Ç°×º¿ÉÒÔÖ±½ÓÌîĞ´ÍêÕû×Ö·û´®£¬»òÕßÖ»Ìî API Key¡£")]
+    [Header("DeepSeek API é…ç½®")]
+    [Tooltip("å¦‚æœéœ€è¦ Bearer å‰ç¼€å¯ä»¥ç›´æ¥å¡«å†™å®Œæ•´å­—ç¬¦ä¸²ï¼Œæˆ–è€…åªå¡« API Keyã€‚")]
     public string apiKey = "";
     public string apiUrl = "https://api.deepseek.cn/v1/chat/completions";
     public string model = "deepseek-chat";
-    [Tooltip("½öÓÃÓÚ¿ª·¢²âÊÔ£ººöÂÔ SSL Ö¤ÊéÑéÖ¤¡£Éú²ú»·¾³Çë±£³Ö¹Ø±Õ¡£")]
+    [Tooltip("ä»…ç”¨äºå¼€å‘æµ‹è¯•ï¼šå¿½ç•¥ SSL è¯ä¹¦éªŒè¯ã€‚ç”Ÿäº§ç¯å¢ƒè¯·ä¿æŒå…³é—­ã€‚")]
     public bool ignoreSslErrors = false;
 
-    [Header("»Ø¸´·ç¸ñ")]
+    [Header("å›å¤é£æ ¼")]
     [Range(0f, 2f)]
-    [Tooltip("Ô½¸ßÔ½ÓĞ±ä»¯¡£Ç×ÆİÏĞÁÄ½¨Òé 1.1~1.3¡£")]
+    [Tooltip("è¶Šé«˜è¶Šæœ‰å˜åŒ–ã€‚äº²æˆšé—²èŠå»ºè®® 1.1~1.3ã€‚")]
     public float temperature = 1.2f;
     [Range(0f, 1f)]
     public float topP = 0.9f;
     [Range(-2f, 2f)]
-    [Tooltip("¼õÉÙ¿ÚÍ·ìøºÍ¹Ì¶¨¾äÊ½µÄÖØ¸´¡£")]
+    [Tooltip("å‡å°‘å£å¤´ç¦…å’Œå›ºå®šå¥å¼çš„é‡å¤ã€‚")]
     public float frequencyPenalty = 0.35f;
     [Range(-2f, 2f)]
-    [Tooltip("ÈÃ¶Ô»°¸üÔ¸Òâ×ÔÈ»µØÒı³öĞÂ»°Ìâ¡£")]
+    [Tooltip("è®©å¯¹è¯æ›´æ„¿æ„è‡ªç„¶åœ°å¼•å‡ºæ–°è¯é¢˜ã€‚")]
     public float presencePenalty = 0.15f;
     [Min(32)]
-    [Tooltip("ÏŞÖÆ»Ø´ğ³¤¶È£¬±ÜÃâÇ×ÆİÍ»È»¿ªÊ¼Ğ´Ğ¡×÷ÎÄ¡£")]
+    [Tooltip("é™åˆ¶å›ç­”é•¿åº¦ï¼Œé¿å…äº²æˆšçªç„¶å¼€å§‹å†™å°ä½œæ–‡ã€‚")]
     public int maxTokens = 160;
 
-    [Header("¶Ô»°ÀúÊ·(¶àÂÖ»á»°) ")]
+    [Header("å¯¹è¯å†å²(å¤šè½®ä¼šè¯) ")]
     public List<ChatMessage> messageHistory = new List<ChatMessage>();
 
     /// <summary>
-    /// ³õÊ¼»¯¶Ô»°£¬½« system prompt ×÷ÎªµÚÒ»ÌõÏûÏ¢´æÈëÀúÊ·¡£
+    /// åˆå§‹åŒ–å¯¹è¯ï¼Œå°† system prompt ä½œä¸ºç¬¬ä¸€æ¡æ¶ˆæ¯å­˜å…¥å†å²ã€‚
     /// </summary>
     public void Initialize(string systemPrompt)
     {
@@ -92,19 +92,19 @@ public class DeepSeekChatClient : MonoBehaviour
     }
 
     /// <summary>
-    /// ·¢ËÍÓÃ»§ÏûÏ¢µ½ DeepSeek£¬²¢»Øµ÷»Ø´ğ¡£
+    /// å‘é€ç”¨æˆ·æ¶ˆæ¯åˆ° DeepSeekï¼Œå¹¶å›è°ƒå›ç­”ã€‚
     /// </summary>
     public IEnumerator SendChatRequest(string userContent, Action<string> onSuccess, Action<string> onError)
     {
         if (string.IsNullOrEmpty(apiKey))
         {
-            onError?.Invoke("ÇëÏÈÌîĞ´ DeepSeek apiKey¡£\n¿ÉÒÔÔÚ ChatDemoUI ÖĞÉèÖÃ¡£ÏëÒª¿ìËÙ²âÊÔ£¬¿ÉÏÈÔÚ Inspector ÖĞÌîÈë apiKey¡£ ");
+            onError?.Invoke("è¯·å…ˆå¡«å†™ DeepSeek apiKeyã€‚\nå¯ä»¥åœ¨ ChatDemoUI ä¸­è®¾ç½®ã€‚æƒ³è¦å¿«é€Ÿæµ‹è¯•ï¼Œå¯å…ˆåœ¨ Inspector ä¸­å¡«å…¥ apiKeyã€‚ ");
             yield break;
         }
 
         if (string.IsNullOrEmpty(userContent))
         {
-            onError?.Invoke("·¢ËÍÄÚÈİ²»ÄÜÎª¿Õ¡£");
+            onError?.Invoke("å‘é€å†…å®¹ä¸èƒ½ä¸ºç©ºã€‚");
             yield break;
         }
 
@@ -156,7 +156,7 @@ public class DeepSeekChatClient : MonoBehaviour
 #endif
             if (hasNetworkError)
             {
-                string networkError = request.error ?? "Î´ÖªÍøÂç´íÎó";
+                string networkError = request.error ?? "æœªçŸ¥ç½‘ç»œé”™è¯¯";
                 if (IsSslError(networkError))
                 {
                     onError?.Invoke(
@@ -164,7 +164,7 @@ public class DeepSeekChatClient : MonoBehaviour
                     yield break;
                 }
 
-                onError?.Invoke($"ÇëÇóÊ§°Ü£º{networkError}");
+                onError?.Invoke($"è¯·æ±‚å¤±è´¥ï¼š{networkError}");
                 yield break;
             }
 
@@ -173,14 +173,14 @@ public class DeepSeekChatClient : MonoBehaviour
 
             if (string.IsNullOrEmpty(assistantText))
             {
-                onError?.Invoke($"DeepSeek ·µ»ØÒì³££¬Ô­Ê¼ÏìÓ¦£º{json}");
+                onError?.Invoke($"DeepSeek è¿”å›å¼‚å¸¸ï¼ŒåŸå§‹å“åº”ï¼š{json}");
                 yield break;
             }
 
             messageHistory.Add(new ChatMessage("assistant", assistantText));
             onSuccess?.Invoke(assistantText);
 
-
+            
         }
     }
 
@@ -192,7 +192,7 @@ public class DeepSeekChatClient : MonoBehaviour
         string candidate = rawApiUrl?.Trim();
         if (string.IsNullOrEmpty(candidate))
         {
-            error = "apiUrl Îª¿Õ£¬ÇëÔÚ Inspector ÌîĞ´ DeepSeek ½Ó¿ÚµØÖ·¡£";
+            error = "apiUrl ä¸ºç©ºï¼Œè¯·åœ¨ Inspector å¡«å†™ DeepSeek æ¥å£åœ°å€ã€‚";
             return false;
         }
 
@@ -204,19 +204,19 @@ public class DeepSeekChatClient : MonoBehaviour
 
         if (!Uri.TryCreate(candidate, UriKind.Absolute, out Uri uri))
         {
-            error = $"apiUrl ¸ñÊ½²»ÕıÈ·£º{rawApiUrl}";
+            error = $"apiUrl æ ¼å¼ä¸æ­£ç¡®ï¼š{rawApiUrl}";
             return false;
         }
 
         if (uri.Scheme != Uri.UriSchemeHttp && uri.Scheme != Uri.UriSchemeHttps)
         {
-            error = $"apiUrl ±ØĞëÒÔ http »ò https ¿ªÍ·£º{candidate}";
+            error = $"apiUrl å¿…é¡»ä»¥ http æˆ– https å¼€å¤´ï¼š{candidate}";
             return false;
         }
 
         if (string.IsNullOrWhiteSpace(uri.Host))
         {
-            error = $"apiUrl È±ÉÙÖ÷»úÃû£º{candidate}";
+            error = $"apiUrl ç¼ºå°‘ä¸»æœºåï¼š{candidate}";
             return false;
         }
 
@@ -253,7 +253,7 @@ public class DeepSeekChatClient : MonoBehaviour
         }
         catch (Exception)
         {
-            // ºöÂÔ½âÎöÒì³££¬ºóĞø³¢ÊÔÔ­Ê¼×Ö·û´®
+            // å¿½ç•¥è§£æå¼‚å¸¸ï¼Œåç»­å°è¯•åŸå§‹å­—ç¬¦ä¸²
         }
 
         return json.Trim();
