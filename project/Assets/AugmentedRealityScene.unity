@@ -278,10 +278,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4ace275a2bb0234d85ae97541c1cb3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  apiKey: sk-23f20be4f2a74ec7a83f4c55e0266db2
-  apiUrl: https://api.deepseek.com/chat/completions
+  apiKey: 
+  apiUrl: https://api.deepseek.cn/v1/chat/completions
   model: deepseek-chat
-  ignoreSslErrors: 1
+  ignoreSslErrors: 0
   temperature: 1.2
   topP: 0.9
   frequencyPenalty: 0.35
@@ -1137,7 +1137,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1733605516}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.999796
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
